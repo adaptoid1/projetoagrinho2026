@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" preserveAspectRatio="xMidYMid meet">
+<title>Ilustração do cultivo tradicional — passe o mouse para animar</title>
+<defs>
+  <clipPath id="tradClip"><rect width="400" height="300"/></clipPath>
+  <radialGradient id="skyGrad" cx="78%" cy="28%" r="50%">
+    <stop offset="0%" stop-color="#e8a23a" stop-opacity=".32"/>
+    <stop offset="100%" stop-color="#0a1410" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<!-- sky -->
+<rect width="400" height="300" fill="#0a1410"/>
+<rect id="skyLayer" width="400" height="300" fill="url(#skyGrad)" opacity=".7">
+  <animate id="aSkyFade" attributeName="opacity" values="0.7;1;0.7" dur="5s" repeatCount="indefinite" begin="indefinite"/>
+</rect>
+
+<!-- sun glow halo -->
+<circle id="sunHalo" cx="200" cy="70" r="48" fill="#e8a23a" opacity=".12">
+  <animate id="aSunGlow" attributeName="r" values="48;60;48" dur="4s" repeatCount="indefinite" begin="indefinite"/>
+  <animate id="aSunGlowOp" attributeName="opacity" values=".12;.26;.12" dur="4s" repeatCount="indefinite" begin="indefinite"/>
+</circle>
+
+<!-- sun core -->
+<circle id="sunCore" cx="200" cy="70" r="30" fill="#e8a23a" opacity=".92">
+  <animate id="aSunCore" attributeName="r" values="30;34;30" dur="3.6s" repeatCount="indefinite" begin="indefinite"/>
+</circle>
+
+<!-- sun rays group — spin via animateTransform -->
+<g id="sunRays" transform="translate(200,70)" opacity=".38">
+  <animateTransform id="aSunSpin" attributeName="transform" type="rotate"
+    from="0 200 70" to="360 200 70" dur="16s" repeatCount="indefinite" begin="indefinite"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(45 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(90 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(135 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(180 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(225 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(270 0 0)"/>
+  <line x1="0" y1="-40" x2="0" y2="-55" stroke="#e8a23a" stroke-width="3" stroke-linecap="round" transform="rotate(315 0 0)"/>
+</g>
+
+<!-- mountains -->
+<g opacity=".6">
+  <polygon points="10,170 65,100 120,170" fill="#2a1f12"/>
+  <polygon points="90,175 160,90 230,175" fill="#241a0e"/>
+  <polygon points="230,176 295,105 360,176" fill="#2a1f12"/>
+  <polygon points="340,178 375,140 410,178" fill="#1e1708"/>
+</g>
+
+<!-- ground -->
+<rect x="0" y="170" width="400" height="130" fill="#16241c"/>
+<rect x="0" y="170" width="400" height="4" fill="#1e3226"/>
+
+<!-- furrow lines -->
+<g stroke="#243d2c" stroke-width="1.5" opacity=".7">
+  <line x1="20" y1="300" x2="60" y2="174"/>
+  <line x1="90" y1="300" x2="118" y2="174"/>
+  <line x1="265" y1="300" x2="255" y2="174"/>
+  <line x1="345" y1="300" x2="325" y2="174"/>
+</g>
+
+<!-- plant 1 (centered left quadrant) -->
+<g clip-path="url(#tradClip)">
+  <g id="plant1">
+    <animateTransform id="aPlant1" attributeName="transform" type="rotate"
+      values="-4 80 210;4 80 210;-4 80 210" dur="3.6s" repeatCount="indefinite" begin="indefinite"/>
+    <line x1="80" y1="210" x2="80" y2="188" stroke="#4a6a45" stroke-width="2.5"/>
+    <circle cx="80" cy="182" r="11" fill="#7da86f"/>
+    <circle cx="72" cy="191" r="9" fill="#6a9a5e"/>
+    <circle cx="89" cy="192" r="9" fill="#8abf74"/>
+  </g>
+  <!-- plant 2 -->
+  <g id="plant2">
+    <animateTransform id="aPlant2" attributeName="transform" type="rotate"
+      values="4 130 213;-3 130 213;4 130 213" dur="3.0s" repeatCount="indefinite" begin="indefinite"/>
+    <line x1="130" y1="213" x2="130" y2="192" stroke="#4a6a45" stroke-width="2.5"/>
+    <circle cx="130" cy="186" r="10" fill="#88b577"/>
+    <circle cx="122" cy="195" r="8" fill="#6a9a5e"/>
+    <circle cx="138" cy="196" r="8" fill="#7da86f"/>
+  </g>
+  <!-- plant 3 (right of person) -->
+  <g id="plant3">
+    <animateTransform id="aPlant3" attributeName="transform" type="rotate"
+      values="-3 285 211;5 285 211;-3 285 211" dur="4.2s" repeatCount="indefinite" begin="indefinite"/>
+    <line x1="285" y1="211" x2="285" y2="190" stroke="#4a6a45" stroke-width="2.5"/>
+    <circle cx="285" cy="184" r="11" fill="#7da86f"/>
+    <circle cx="277" cy="193" r="9" fill="#88b577"/>
+    <circle cx="293" cy="195" r="9" fill="#6a9a5e"/>
+  </g>
+  <!-- plant 4 -->
+  <g id="plant4">
+    <animateTransform id="aPlant4" attributeName="transform" type="rotate"
+      values="3 340 214;-4 340 214;3 340 214" dur="2.8s" repeatCount="indefinite" begin="indefinite"/>
+    <line x1="340" y1="214" x2="340" y2="193" stroke="#4a6a45" stroke-width="2.5"/>
+    <circle cx="340" cy="187" r="10" fill="#88b577"/>
+    <circle cx="332" cy="196" r="8" fill="#6a9a5e"/>
+    <circle cx="348" cy="197" r="8" fill="#7da86f"/>
+  </g>
+</g>
+
+<!-- PERSON — centered at x=200 -->
+<g id="personGroup">
+  <animateTransform id="aPersonSway" attributeName="transform" type="rotate"
+    values="0 200 265;-3 200 265;0 200 265;3 200 265;0 200 265"
+    dur="2s" repeatCount="indefinite" begin="indefinite"/>
+
+  <!-- shadow -->
+  <ellipse cx="200" cy="267" rx="22" ry="5" fill="#040a06" opacity=".4"/>
+  <!-- legs -->
+  <rect x="191" y="228" width="9" height="28" rx="3" fill="#4a3820"/>
+  <rect x="202" y="228" width="9" height="28" rx="3" fill="#5a4530"/>
+  <!-- body -->
+  <rect x="188" y="194" width="24" height="32" rx="5" fill="#e8a23a"/>
+  <!-- head -->
+  <circle cx="202" cy="178" r="16" fill="#caa06a"/>
+  <!-- hat brim -->
+  <ellipse cx="202" cy="165" rx="20" ry="4" fill="#6a4f28"/>
+  <rect x="186" y="158" width="30" height="10" rx="4" fill="#7a5c30"/>
+  <!-- arm -->
+  <rect x="209" y="200" width="8" height="30" rx="3" fill="#caa06a" transform="rotate(20 213 200)"/>
+  <!-- hoe handle -->
+  <rect x="216" y="188" width="6" height="72" rx="2" fill="#8a6a3a"/>
+  <!-- hoe blade (swing) -->
+  <g id="hoeGroup">
+    <animateTransform id="aHoe" attributeName="transform" type="rotate"
+      values="0 216 190;-18 216 190;5 216 190;0 216 190"
+      dur="1.8s" repeatCount="indefinite" begin="indefinite"/>
+    <rect x="196" y="182" width="36" height="8" rx="3" fill="#b07c3e" transform="rotate(-30 214 186)"/>
+  </g>
+  <!-- dust a -->
+  <circle cx="185" cy="258" r="3" fill="#8a6a3a" opacity="0">
+    <animate id="aDustA1" attributeName="opacity" values="0;0.7;0" dur="2.2s" repeatCount="indefinite" begin="indefinite"/>
+    <animate id="aDustA2" attributeName="cy" values="258;242;225" dur="2.2s" repeatCount="indefinite" begin="indefinite"/>
+    <animate id="aDustA3" attributeName="cx" values="185;177;169" dur="2.2s" repeatCount="indefinite" begin="indefinite"/>
+  </circle>
+  <!-- dust b -->
+  <circle cx="190" cy="258" r="2" fill="#b08a40" opacity="0">
+    <animate id="aDustB1" attributeName="opacity" values="0;0.5;0" dur="2.2s" repeatCount="indefinite" begin="0.7s;indefinite"/>
+    <animate id="aDustB2" attributeName="cy" values="258;240;222" dur="2.2s" repeatCount="indefinite" begin="0.7s;indefinite"/>
+  </circle>
+</g>
+
+<!-- bird — flies across when activated -->
+<g id="birdGroup">
+  <animateTransform id="aBird" attributeName="transform" type="translate"
+    values="-20,110;420,74" dur="9s" repeatCount="indefinite" begin="indefinite"/>
+  <path d="M0 0 Q-9 -5 -15 0" stroke="#caa06a" stroke-width="2" fill="none">
+    <animate id="aBirdWingL" attributeName="d" values="M0 0 Q-9 -5 -15 0;M0 0 Q-9 4 -15 0;M0 0 Q-9 -5 -15 0" dur="0.45s" repeatCount="indefinite" begin="indefinite"/>
+  </path>
+  <path d="M0 0 Q9 -5 15 0" stroke="#caa06a" stroke-width="2" fill="none">
+    <animate id="aBirdWingR" attributeName="d" values="M0 0 Q9 -5 15 0;M0 0 Q9 4 15 0;M0 0 Q9 -5 15 0" dur="0.45s" repeatCount="indefinite" begin="indefinite"/>
+  </path>
+</g>
+
+<!-- hover hint (shown at rest) -->
+<text id="tradHint" x="200" y="290" text-anchor="middle" font-family="monospace" font-size="10"
+  fill="#e8a23a" opacity=".45" letter-spacing="2">PASSE O MOUSE PARA ANIMAR</text>
+</svg>

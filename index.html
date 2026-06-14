@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  Agrinho 2026 — Agro Forte, Futuro Sustentável
+  Autor: Izaque Closs Scheid da Silva
+  Turma: 1.º Ano C
+  Escola: Col. Est. Cívico Militar Frentino Sackser
+  Cidade: Marechal Cândido Rondon — PR
+  Categoria: Programação Front-End (HTML, CSS e JavaScript)
+  Tema: Equilíbrio entre produção e meio ambiente
+  Arquivos: index.html · css/style.css · js/script.js · README.md
+  Ilustrações SVG: criadas manualmente com código SVG puro
+  Nenhum framework ou biblioteca externa foi utilizado.
+  ============================================================
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- TAG OFICIAL AGRINHO (obrigatória para publicação) -->
+<meta name="agrinho" content="Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"/>
+<title>Agrinho 2026 — Duas Trilhas, Um Futuro</title>
+<meta name="description" content="Site educativo Agrinho 2026 sobre cultivo tradicional e cultivo tecnológico no campo brasileiro."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="matrixRain" aria-hidden="true"></canvas>
+<div class="glow-vignette" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<!-- ============ GATE: ESCOLHA DO CAMINHO ============ -->
+<div id="gate" role="dialog" aria-label="Escolha seu caminho">
+  <canvas id="gateRain" aria-hidden="true"></canvas>
+  <div class="gate-inner">
+    <p class="gate-eyebrow">// Agrinho 2026</p>
+    <h1 class="gate-title">Duas trilhas.<br>Um único futuro para o campo.</h1>
+    <p class="gate-sub">Antes de entrar, escolha como você quer ver a produção agrícola — o site se adapta à sua escolha, mas você pode trocar quando quiser.</p>
+    <div class="pills">
+      <button class="pill pill-red" data-path="trad" aria-label="Escolher caminho tradicional">
+        <span class="pill-dot" aria-hidden="true"></span>
+        <span class="pill-eyebrow">Pílula vermelha</span>
+        <span class="pill-title">Cultivo Tradicional</span>
+        <span class="pill-desc">Saberes passados entre gerações, manejo manual e relação direta com a terra. A base sobre a qual tudo foi construído.</span>
+        <span class="pill-cta">Entrar →</span>
+      </button>
+      <button class="pill pill-blue" data-path="tech" aria-label="Escolher caminho tecnológico">
+        <span class="pill-dot" aria-hidden="true"></span>
+        <span class="pill-eyebrow">Pílula azul</span>
+        <span class="pill-title">Cultivo Tecnológico</span>
+        <span class="pill-desc">Sensores, drones e dados guiando cada decisão na lavoura. Precisão para produzir mais usando menos.</span>
+        <span class="pill-cta">Entrar →</span>
+      </button>
+    </div>
+    <p class="gate-foot">Nenhuma escolha é "certa". O Brasil real combina as duas.</p>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav" aria-label="Navegação principal">
+  <a href="#inicio" class="nav-brand"><span class="dot" aria-hidden="true"></span>AGRINHO 2026</a>
+  <button id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <div class="nav-links" id="nav-links">
+    <a href="#agrinho" class="nav-link">Agrinho</a>
+    <a href="#justificativa" class="nav-link">Justificativa</a>
+    <a href="#objetivos" class="nav-link">Objetivos</a>
+    <a href="#cultivo" class="nav-link">Cultivo</a>
+    <a href="#jogo" class="nav-link">Jogo</a>
+    <a href="#referencias" class="nav-link">Referências</a>
+    <a href="#contato" class="nav-link">Contato</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ INÍCIO / HERO ============ -->
+  <section id="inicio" class="section">
+    <p class="hero-tag" id="heroTag">// Trilha selecionada: —<span class="cursor-blink" aria-hidden="true">▌</span></p>
+    <h1 class="hero-title">Agro forte, <em>futuro sustentável</em>: o equilíbrio entre produção e meio ambiente.</h1>
+    <p class="side-prompt">De que lado você fica: <span class="side-trad">Cultivo Tradicional</span> <span class="side-x">×</span> <span class="side-tech">Cultivo Tecnológico</span>?</p>
+    <p class="hero-sub">Um site educativo do Agrinho 2026 que coloca lado a lado o cultivo tradicional e o cultivo tecnológico — duas formas de produzir alimento que, juntas, sustentam o agro brasileiro.</p>
+
+    <div class="hero-visuals" aria-label="Duas trilhas: cultivo tradicional e cultivo tecnológico">
+      <figure class="hero-visual hero-visual-trad">
+<img src="img/cultivo-tradicional.svg" alt="Ilustração animada do cultivo tradicional — sol pulsante, plantas balançando, pessoa com enxada" width="400" height="300" style="width:100%;height:100%;display:block">
+        <figcaption>Cultivo Tradicional</figcaption>
+      </figure>
+      <figure class="hero-visual hero-visual-tech">
+<img src="img/cultivo-tecnologico.svg" alt="Ilustração animada do cultivo tecnológico — drone sobrevoando lavoura de precisão com sensores e dados binários" width="400" height="300" style="width:100%;height:100%;display:block">
+        <figcaption>Cultivo Tecnológico</figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <b>1971</b>
+        <p class="hero-meta-label">Marco do agronegócio</p>
+        <p class="hero-meta-desc">Foi nesse ano que o economista americano John H. Davis cunhou o termo "agribusiness" — traduzido no Brasil como agronegócio — em parceria com Ray Goldberg, na Universidade de Harvard. O conceito revolucionou a forma de enxergar o campo: em vez de atividade isolada, a agricultura passou a ser compreendida como uma cadeia produtiva completa e integrada, que vai desde a fabricação de insumos e sementes, passa pelo cultivo e colheita, e segue até o processamento, distribuição e chegada do alimento à prateleira do consumidor. Essa visão sistêmica transformou o campo em um dos pilares da economia global.</p>
+      </div>
+      <div class="hero-meta-item">
+        <b>27%</b>
+        <p class="hero-meta-label">Do PIB nacional vem do agro</p>
+        <p class="hero-meta-desc">O Brasil é uma das maiores potências agrícolas do planeta. Segundo dados do Ministério da Agricultura, Pecuária e Abastecimento (MAPA) e do IBGE, cerca de 27% do PIB brasileiro tem origem direta ou indireta no campo — o que representa trilhões de reais movimentados anualmente. Mais do que isso, o agronegócio responde por mais de 40% de todas as exportações nacionais, sendo o país líder mundial na produção de soja, café, açúcar, suco de laranja e carne bovina. Esse desempenho coloca o Brasil como peça-chave na segurança alimentar global, alimentando bilhões de pessoas em todos os continentes e gerando renda para milhões de famílias brasileiras — tanto em grandes propriedades rurais quanto na agricultura familiar de pequeno porte.</p>
+      </div>
+      <div class="hero-meta-item">
+        <b>2</b>
+        <p class="hero-meta-label">Caminhos, uma só meta</p>
+        <p class="hero-meta-desc">Cultivo tradicional e cultivo tecnológico não são opostos — são faces complementares de um mesmo e urgente desafio: produzir alimentos suficientes para uma população global crescente sem destruir os recursos naturais que tornam essa produção possível. O cultivo tradicional carrega séculos de sabedoria acumulada, adaptada ao solo, ao clima e à cultura local, sendo a base da agricultura familiar que abastece feiras, mercados e mesas por todo o Brasil. Já o cultivo tecnológico — com sensores, drones, inteligência artificial e agricultura de precisão — oferece ferramentas para produzir mais usando menos água, menos fertilizante e menos energia. O verdadeiro futuro sustentável do campo não está em escolher um ou outro, mas em aprender com os dois: unindo o conhecimento ancestral à inovação, respeitando o solo, a água, a biodiversidade e as próximas gerações que dependerão dessa terra para se alimentar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AGRINHO: O QUE É / HISTÓRIA / PROPOSTA ============ -->
+  <section id="agrinho" class="section">
+    <p class="eyebrow">01 — Sobre o Agrinho</p>
+    <h2>O que é, de onde vem e o que propomos.</h2>
+    <p class="lede">O Programa Agrinho é uma iniciativa de educação ambiental e cidadã que, há mais de três décadas, leva ao ambiente escolar reflexões sobre o campo, a cidade e a relação entre eles.</p>
+
+    <div class="grid grid-3" style="margin-bottom:48px">
+      <div class="card">
+        <span class="tag">O que é</span>
+        <h3>Educação que nasce no campo</h3>
+        <p>O Agrinho é um programa socioeducativo voltado a estudantes da educação básica, com o objetivo de aproximar o conhecimento sobre agricultura, meio ambiente e cidadania da realidade escolar, por meio de materiais didáticos e concursos de produção.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Trajetória</span>
+        <h3>Mais de três décadas de história</h3>
+        <p>Desde o início dos anos 1990, o programa é promovido por entidades do sistema rural em parceria com secretarias de educação, alcançando milhões de estudantes em diferentes estados brasileiros ao longo dos anos.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Nossa proposta</span>
+        <h3>Mostrar as duas faces do campo</h3>
+        <p>Em vez de tratar tradição e tecnologia como opostos, este site propõe um percurso onde o visitante experimenta os dois caminhos, entende seus fundamentos e percebe como eles podem se complementar.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:24px">Linha do tempo do programa</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-year">Década de 1990</p>
+        <p class="tl-title">Criação do programa</p>
+        <p class="tl-desc">Entidades ligadas ao sistema agropecuário articulam, junto a secretarias de educação, um programa de caráter socioeducativo voltado às escolas da rede pública e privada.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">Expansão estadual</p>
+        <p class="tl-title">Crescimento da adesão escolar</p>
+        <p class="tl-desc">O programa passa a alcançar um número crescente de escolas e municípios, consolidando-se como um dos maiores projetos de educação rural e ambiental do país.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">Era digital</p>
+        <p class="tl-title">Novos formatos de produção</p>
+        <p class="tl-desc">Categorias de produção textual, artística e, mais recentemente, de programação front-end passam a integrar os concursos, refletindo as transformações tecnológicas do próprio campo.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">2026</p>
+        <p class="tl-title">Esta proposta</p>
+        <p class="tl-desc">Um site que apresenta, lado a lado, o cultivo tradicional e o cultivo tecnológico, com fundamentação teórica, dados e um jogo educativo para cada trilha.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JUSTIFICATIVA ============ -->
+  <section id="justificativa" class="section">
+    <p class="eyebrow">02 — Justificativa</p>
+    <h2>Por que falar de tradição e tecnologia no mesmo espaço?</h2>
+    <p class="lede">Porque o agro brasileiro real não é uma escolha binária — é um espectro. Pequenas propriedades familiares e grandes operações de precisão convivem no mesmo território e, frequentemente, dependem uma da outra.</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <span class="tag">Contexto</span>
+        <h3>O Brasil tem os dois Brasis agrícolas</h3>
+        <p>De um lado, a agricultura familiar — responsável por grande parte dos alimentos que chegam à mesa do brasileiro, sustentada em conhecimento tradicional acumulado por gerações. De outro, o agronegócio de precisão, que usa dados, sensores e máquinas autônomas para otimizar grandes áreas de produção. Compreender as duas lógicas é compreender o país.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Educação</span>
+        <h3>Estudantes como ponte entre campo e cidade</h3>
+        <p>Muitos estudantes da educação básica nunca pisaram em uma propriedade rural, mas dependem diretamente dela três vezes por dia. Apresentar os fundamentos de ambos os modelos de cultivo ajuda a formar uma visão crítica sobre de onde vêm os alimentos e qual o custo ambiental de cada escolha produtiva.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Sustentabilidade</span>
+        <h3>Tradição não é atraso, tecnologia não é solução mágica</h3>
+        <p>Práticas tradicionais como rotação de culturas, plantio consorciado e manejo orgânico do solo têm respaldo agroecológico consolidado. Ao mesmo tempo, tecnologias como agricultura de precisão reduzem desperdício de insumos. O discurso de que uma "substitui" a outra simplifica demais um problema complexo.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Formato</span>
+        <h3>Por que um site com duas trilhas?</h3>
+        <p>A escolha inicial entre "cultivo tradicional" e "cultivo tecnológico" não é uma divisão definitiva — é um convite. Ao final, o visitante é incentivado a explorar a outra trilha e perceber os pontos de contato entre elas, reforçando a ideia central: equilíbrio entre produção e meio ambiente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OBJETIVOS ============ -->
+  <section id="objetivos" class="section">
+    <p class="eyebrow">03 — Objetivos</p>
+    <h2>O que este projeto pretende alcançar.</h2>
+    <p class="lede">Objetivos gerais e específicos que orientaram o desenvolvimento do conteúdo, do design e da experiência interativa.</p>
+
+    <div class="obj-list">
+      <div class="obj-item">
+        <span class="obj-num">01</span>
+        <div>
+          <p class="obj-title">Apresentar os fundamentos do cultivo tradicional</p>
+          <p class="obj-desc">Explicar práticas como manejo do solo, policultura, sementes crioulas e saberes populares, situando-os dentro do debate sobre agroecologia e segurança alimentar.</p>
+        </div>
+      </div>
+      <div class="obj-item">
+        <span class="obj-num">02</span>
+        <div>
+          <p class="obj-title">Apresentar os fundamentos do cultivo tecnológico</p>
+          <p class="obj-desc">Explicar como sensores de solo, drones, GPS de precisão e modelos preditivos são usados para reduzir desperdício de água, insumos e energia na produção agrícola.</p>
+        </div>
+      </div>
+      <div class="obj-item">
+        <span class="obj-num">03</span>
+        <div>
+          <p class="obj-title">Comparar impactos ambientais de forma honesta</p>
+          <p class="obj-desc">Mostrar vantagens e limitações reais de cada modelo, evitando promover qualquer um deles como solução única para a sustentabilidade do campo.</p>
+        </div>
+      </div>
+      <div class="obj-item">
+        <span class="obj-num">04</span>
+        <div>
+          <p class="obj-title">Criar uma experiência de navegação simples e acessível</p>
+          <p class="obj-desc">Garantir contraste adequado, navegação por teclado, textos alternativos e uma estrutura de menu única (sem submenus escondidos) para que qualquer visitante encontre o conteúdo rapidamente.</p>
+        </div>
+      </div>
+      <div class="obj-item">
+        <span class="obj-num">05</span>
+        <div>
+          <p class="obj-title">Gamificar o aprendizado</p>
+          <p class="obj-desc">Oferecer um jogo de decisões que reflete, na prática, os trade-offs entre custo, sustentabilidade e produtividade discutidos nas seções teóricas.</p>
+        </div>
+      </div>
+      <div class="obj-item">
+        <span class="obj-num">06</span>
+        <div>
+          <p class="obj-title">Fundamentar todo o conteúdo em referências confiáveis</p>
+          <p class="obj-desc">Basear as informações apresentadas em fontes institucionais reconhecidas sobre agricultura, meio ambiente e energia, disponibilizadas na seção de referências.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CULTIVO: TRADICIONAL VS TECNOLÓGICO ============ -->
+  <section id="cultivo" class="section">
+    <p class="eyebrow">04 — Cultivo Tradicional & Tecnológico</p>
+    <h2 id="cultivoTitle">Duas formas de cultivar — a sua trilha em destaque.</h2>
+    <p class="lede">Cada modelo tem fundamentos próprios. Veja a comparação abaixo.</p>
+
+    <div class="compare">
+      <div class="compare-col trad">
+        <h3 class="col-trad">🌾 Cultivo Tradicional</h3>
+        <p class="sub">Saber acumulado, manejo direto</p>
+        <ul class="compare-list">
+          <li>Conhecimento transmitido entre gerações, adaptado às condições locais de solo e clima.</li>
+          <li>Práticas como rotação de culturas, plantio consorciado e adubação orgânica.</li>
+          <li>Menor dependência de insumos industrializados e de energia externa.</li>
+          <li>Maior uso de mão de obra e tempo de manejo.</li>
+          <li>Produtividade por área tende a ser menor, mas com baixo custo de entrada.</li>
+          <li>Base da agricultura familiar, que responde por parcela relevante dos alimentos consumidos no país.</li>
+        </ul>
+      </div>
+      <div class="compare-mid" aria-hidden="true">VS</div>
+      <div class="compare-col tech">
+        <h3 class="col-tech">🛰️ Cultivo Tecnológico</h3>
+        <p class="sub">Dados, sensores, precisão</p>
+        <ul class="compare-list">
+          <li>Decisões guiadas por dados de sensores de solo, imagens de satélite e drones.</li>
+          <li>Aplicação localizada de água, fertilizantes e defensivos apenas onde necessário.</li>
+          <li>Maquinário guiado por GPS reduz sobreposição de plantio e desperdício de sementes.</li>
+          <li>Investimento inicial elevado em equipamentos, software e conectividade.</li>
+          <li>Produtividade por área tende a ser maior, com uso mais eficiente de recursos.</li>
+          <li>Central no agronegócio de exportação e em grandes propriedades.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-v" data-target="35">0%</div><div class="stat-l">menos água em sistemas de irrigação de precisão</div></div>
+      <div class="stat"><div class="stat-v" data-target="30">0%</div><div class="stat-l">menos fertilizante com aplicação localizada</div></div>
+      <div class="stat"><div class="stat-v" data-target="70">0%</div><div class="stat-l">redução de água com gotejamento em manejo tradicional otimizado</div></div>
+      <div class="stat"><div class="stat-v" data-target="80">0%</div><div class="stat-l">de redução no custo de energia com geração solar própria</div></div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:40px">
+      <div class="card">
+        <span class="tag">Fundamentação</span>
+        <h3>Agroecologia e saberes tradicionais</h3>
+        <p>Sistemas agroecológicos baseiam-se na diversificação de cultivos, no uso de adubação verde e na preservação da biodiversidade do solo. Esses princípios são reconhecidos por organizações internacionais como caminhos viáveis para produção sustentável de alimentos, especialmente em propriedades familiares de pequeno porte.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Fundamentação</span>
+        <h3>Agricultura de precisão</h3>
+        <p>A agricultura de precisão integra geotecnologias, sensoriamento remoto e análise de dados para mapear a variabilidade do solo e da lavoura, permitindo que insumos sejam aplicados em taxa variável conforme a necessidade real de cada zona do terreno — reduzindo desperdício e impacto ambiental.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOGO ============ -->
+  <section id="jogo" class="section">
+    <p class="eyebrow">05 — Jogo Educativo</p>
+    <h2>Missão Fazenda Sustentável</h2>
+    <p class="lede">Tome decisões ao longo de três fases e veja como cada escolha — tradicional, tecnológica ou mista — afeta sustentabilidade e lucratividade.</p>
+
+    <div class="game-shell">
+      <div class="game-tabs" role="tablist" aria-label="Fases do jogo">
+        <button class="game-tab active" data-fase="1">Fase 1 · Energia</button>
+        <button class="game-tab" data-fase="2">Fase 2 · Manejo</button>
+        <button class="game-tab" data-fase="3">Fase 3 · Recursos</button>
+        <button class="game-tab" data-fase="r">Resultado</button>
+      </div>
+      <div class="game-body">
+
+        <div id="jogo-status">
+          <div class="jstat">
+            <div class="jstat-label">Sustentabilidade</div>
+            <div class="jbar-wrap"><div class="jbar" id="barSustent" style="width:0%"></div></div>
+            <div class="jstat-val"><span id="valSustent">0</span> pts</div>
+          </div>
+          <div class="jstat">
+            <div class="jstat-label">Lucratividade</div>
+            <div class="jbar-wrap"><div class="jbar" id="barLucro" style="width:0%"></div></div>
+            <div class="jstat-val"><span id="valLucro">0</span> pts</div>
+          </div>
+          <div class="jstat">
+            <div class="jstat-label">Pontuação total</div>
+            <div class="jbar-wrap"><div class="jbar" id="barTotal" style="width:0%"></div></div>
+            <div class="jstat-val"><span id="valTotal">0</span> pts</div>
+          </div>
+        </div>
+
+        <div class="jogo-fase active" data-fase="1">
+          <p class="fase-num">Fase 1</p>
+          <h3 class="fase-title">Escolha sua fonte de energia</h3>
+          <p class="fase-desc">Sua fazenda precisa de energia para funcionar. Qual fonte você escolhe?</p>
+          <div class="jogo-opcoes">
+            <button class="jogo-opcao" data-fase="1" data-sustent="0" data-lucro="30">
+              <span class="opc-nome">🔌 Rede elétrica convencional</span>
+              <span class="opc-desc">Fácil de instalar, mas depende de fontes não renováveis.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="1" data-sustent="40" data-lucro="60">
+              <span class="opc-nome">☀️ Energia solar</span>
+              <span class="opc-desc">Investimento inicial maior, retorno sustentável a longo prazo.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="1" data-sustent="30" data-lucro="55">
+              <span class="opc-nome">💨 Energia eólica</span>
+              <span class="opc-desc">Limpa, mas depende das condições de vento da região.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="jogo-fase" data-fase="2">
+          <p class="fase-num">Fase 2</p>
+          <h3 class="fase-title">Como você vai manejar a lavoura?</h3>
+          <p class="fase-desc">Chegou a hora de plantar. Qual abordagem você adota?</p>
+          <div class="jogo-opcoes">
+            <button class="jogo-opcao" data-fase="2" data-sustent="25" data-lucro="10">
+              <span class="opc-nome">🚜 Manejo tradicional</span>
+              <span class="opc-desc">Simples e de baixo custo, mas com maior desperdício de insumos.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="2" data-sustent="50" data-lucro="55">
+              <span class="opc-nome">🛰️ Drones e sensores</span>
+              <span class="opc-desc">Precisão máxima na aplicação de água e fertilizantes.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="2" data-sustent="40" data-lucro="40">
+              <span class="opc-nome">🌱 Abordagem mista</span>
+              <span class="opc-desc">Combina práticas tradicionais com apoio tecnológico pontual.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="jogo-fase" data-fase="3">
+          <p class="fase-num">Fase 3</p>
+          <h3 class="fase-title">Gestão de água e solo</h3>
+          <p class="fase-desc">Como sua fazenda vai tratar os recursos naturais?</p>
+          <div class="jogo-opcoes">
+            <button class="jogo-opcao" data-fase="3" data-sustent="30" data-lucro="0">
+              <span class="opc-nome">❌ Ignorar o problema</span>
+              <span class="opc-desc">Economia no curto prazo, degradação do solo no longo prazo.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="3" data-sustent="25" data-lucro="30">
+              <span class="opc-nome">💧 Manejo básico</span>
+              <span class="opc-desc">Controle mínimo de irrigação, sem monitoramento contínuo.</span>
+            </button>
+            <button class="jogo-opcao" data-fase="3" data-sustent="50" data-lucro="60">
+              <span class="opc-nome">🌍 Gestão avançada</span>
+              <span class="opc-desc">Sensores, reúso de água e recomposição de áreas degradadas.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="jogo-fase" data-fase="r">
+          <div id="resultadoFinal" class="resultado-box show">
+            <h3>Pronto para começar?</h3>
+            <p>Escolha uma opção em cada fase para ver o resultado final da sua fazenda.</p>
+          </div>
+          <button class="btn" id="btnReiniciar">Reiniciar jogo</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFERÊNCIAS ============ -->
+  <section id="referencias" class="section">
+    <p class="eyebrow">06 — Referências</p>
+    <h2>Fontes e fundamentação teórica</h2>
+    <p class="lede">Todo o conteúdo apresentado foi reescrito e adaptado de forma autoral com base nas seguintes fontes institucionais.</p>
+
+    <div class="ref-list">
+      <div class="ref-item">
+        <span class="ref-source">Embrapa</span>
+        <span class="ref-title">Agricultura de Precisão — princípios, sensoriamento remoto e geotecnologias aplicadas à produção agrícola.</span>
+        <span class="ref-link">embrapa.br</span>
+      </div>
+      <div class="ref-item">
+        <span class="ref-source">MAPA — Ministério da Agricultura e Pecuária</span>
+        <span class="ref-title">Políticas públicas para agricultura familiar, agroecologia e produção orgânica.</span>
+        <span class="ref-link">gov.br/agricultura</span>
+      </div>
+      <div class="ref-item">
+        <span class="ref-source">ANEEL</span>
+        <span class="ref-title">Geração distribuída e fontes renováveis de energia aplicadas a propriedades rurais.</span>
+        <span class="ref-link">aneel.gov.br</span>
+      </div>
+      <div class="ref-item">
+        <span class="ref-source">FAO — Organização das Nações Unidas para Agricultura e Alimentação</span>
+        <span class="ref-title">Sustainable Agriculture — diretrizes globais sobre sistemas agroalimentares sustentáveis.</span>
+        <span class="ref-link">fao.org</span>
+      </div>
+      <div class="ref-item">
+        <span class="ref-source">Programa Agrinho</span>
+        <span class="ref-title">Material de referência sobre educação ambiental, cidadania e agronegócio para a educação básica.</span>
+        <span class="ref-link">agrinho.com.br</span>
+      </div>
+    </div>
+
+    <p style="margin-top:28px;color:var(--ink-faint);font-size:.85rem;font-family:var(--mono)">
+      Desenvolvido por <strong style="color:var(--acc)">Izaque Closs Scheid da Silva</strong> — 1.º Ano C, Colégio Estadual Cívico Militar Frentino Sackser, Marechal Cândido Rondon – PR.<br>
+      Concurso Agrinho 2026 — categoria Programação Front-End (HTML, CSS e JavaScript). Código escrito sem frameworks externos.
+    </p>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="section">
+    <p class="eyebrow">07 — Contato</p>
+    <h2>Fale com a equipe do projeto</h2>
+    <p class="lede">Dúvidas, sugestões ou correções sobre o conteúdo? Envie uma mensagem.</p>
+
+    <div class="contact-grid">
+      <form id="contactForm">
+        <div class="form-field">
+          <label for="cName">Nome</label>
+          <input type="text" id="cName" name="name" required>
+        </div>
+        <div class="form-field">
+          <label for="cEmail">E-mail</label>
+          <input type="email" id="cEmail" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="cMsg">Mensagem</label>
+          <textarea id="cMsg" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Enviar mensagem</button>
+        <p id="formStatus" style="margin-top:14px;color:var(--ink-dim);font-size:.85rem;font-family:var(--mono)"></p>
+      </form>
+      <div class="contact-side">
+        <div class="card">
+          <span class="tag">Projeto</span>
+          <h3>Agrinho 2026</h3>
+          <p>Site educativo desenvolvido para o concurso Agrinho, categoria Programação Front-End — Ensino Médio.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Tema</span>
+          <h3>Agro forte, futuro sustentável</h3>
+          <p>Equilíbrio entre produção e meio ambiente, explorado por meio de duas trilhas: cultivo tradicional e cultivo tecnológico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-author">
+    <span class="footer-name">Izaque Closs Scheid da Silva</span>
+    <span class="footer-school">1.º Ano C · Col. Est. Cívico Militar Frentino Sackser · Marechal Cândido Rondon — PR</span>
+  </div>
+  <span class="footer-meta">🌿 Agrinho 2026 — Agro Forte, Futuro Sustentável · HTML · CSS · JS</span>
+</footer>
+
+<!-- ============ ACESSIBILIDADE ============ -->
+<div id="a11y" aria-label="Acessibilidade">
+  <button id="a11yToggle" aria-label="Abrir opções de acessibilidade" aria-expanded="false">
+    <span aria-hidden="true">♿</span>
+  </button>
+  <div id="a11yPanel" role="dialog" aria-label="Opções de acessibilidade">
+    <p class="a11y-title">Acessibilidade</p>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Tamanho do texto</span>
+      <div class="a11y-btns">
+        <button id="fontDec" aria-label="Diminuir tamanho do texto">A−</button>
+        <button id="fontReset" aria-label="Tamanho de texto padrão">A</button>
+        <button id="fontInc" aria-label="Aumentar tamanho do texto">A+</button>
+      </div>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Alto contraste</span>
+      <button class="a11y-switch" id="toggleContrast" aria-pressed="false">Ativar</button>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Fonte para leitura (OpenDyslexic-like)</span>
+      <button class="a11y-switch" id="toggleDyslexic" aria-pressed="false">Ativar</button>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Reduzir animações</span>
+      <button class="a11y-switch" id="toggleMotion" aria-pressed="false">Ativar</button>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Destacar links e foco</span>
+      <button class="a11y-switch" id="toggleFocus" aria-pressed="false">Ativar</button>
+    </div>
+
+    <button class="a11y-reset" id="a11yReset">Restaurar padrões</button>
+  </div>
+</div>
+  <script src="js/script.js"></script>
+</body>
+</html>
